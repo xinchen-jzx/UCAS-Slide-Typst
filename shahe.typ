@@ -45,7 +45,7 @@
   let header(self) = {
     // set std.align(top)
     if self.info.logo != none {
-      place(right+top, dx: -1cm, image(self.info.logo, width: 3cm))
+      place(right+top, dx: -1cm, image(self.info.logo, width: 10cm))
     }
     grid(
       rows: (auto, auto),
@@ -140,13 +140,33 @@
     }
   }
   let body = {
-    if info.logo != none {
-      place(right, text(fill: self.colors.primary, info.logo))
+    // 显示 landing 背景图（如果存在）
+    if info.landing != none {
+      pad(left: -2em, right: -2em, top: -2em)[
+        #figure(image(info.landing, width: 100%))
+      ]
     }
-    pad(left: -2em, right: -2em, top: -2em)[
-      #figure(image(info.landing, width: 100%))
-    ]
-    place(top+center, dy: 50%, {
+    // 添加几何装饰
+    // 左侧彩色竖条
+    place(left+top, dx: 0em, dy: 0em, {
+      set block(width: 0.8em, height: 100%, fill: self.colors.primary)
+      rect(width: 0.8em, height: 100%, fill: self.colors.primary)
+    })
+    // 底部彩色线条
+    place(left+bottom, dx: 0em, dy: 0em, {
+      line(length: 100%, stroke: (thickness: 0.4em, paint: self.colors.primary))
+    })
+    // 右下角几何装饰
+    place(right+bottom, dx: -2em, dy: 2em, {
+      let accent-color = self.colors.primary
+      rect(width: 3em, height: 3em, fill: accent-color, radius: 0.5em)
+    })
+    // 将 logo 放在右上角
+    if info.logo != none {
+      place(right+top, dx: 2em, dy: -2em, image(info.logo, height: 2.5cm))
+    }
+    // 将标题、副标题往上移到中间位置
+    place(top+center, dy: 35%, {
       if info.subtitle != none {
         text(font: (ts, hei), size: 24pt, info.subtitle)
       }
@@ -180,8 +200,36 @@
 /// - body (auto): is the body of the section. This will be passed automatically by Touying.
 #let new-section-slide(config: (:), level: 1, numbered: true, body) = touying-slide-wrapper(self => {
   let slide-body = {
-    pad(left: -2em, top: -2em, right: -2em, {
-      figure(image(self.info.seclanding, width: 100%))
+    // 添加渐变背景
+    place(left+top, dx: -2em, dy: -2em, {
+      rect(
+        width: 120%,
+        height: 120%,
+        fill: gradient.linear(
+          self.colors.primary,
+          self.colors.secondary,
+          angle: 135deg
+        )
+      )
+    })
+    // 只有当 seclanding 存在时才显示背景图
+    if self.info.seclanding != none {
+      pad(left: -2em, top: -2em, right: -2em, {
+        figure(image(self.info.seclanding, width: 100%))
+      })
+    }
+    // 添加几何装饰
+    // 左侧彩色竖条
+    place(left+top, dx: 0em, dy: 0em, {
+      rect(width: 0.8em, height: 100%, fill: self.colors.primary)
+    })
+    // 底部彩色线条
+    place(left+bottom, dx: 0em, dy: 0em, {
+      line(length: 100%, stroke: (thickness: 0.4em, paint: self.colors.primary))
+    })
+    // 右上角几何装饰
+    place(right+top, dx: -2em, dy: 2em, {
+      rect(width: 2em, height: 2em, fill: self.colors.secondary, radius: 0.3em)
     })
     // set std.align(horizon)
     // show: pad.with(20%)
