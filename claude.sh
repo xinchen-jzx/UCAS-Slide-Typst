@@ -1,6 +1,0 @@
-export ANTHROPIC_BASE_URL=https://claude.morphcode.dev
-export ANTHROPIC_AUTH_TOKEN=mc_ARP16yDac9BWT0ylArm7x1aGecL_q9WpfR9MlFgAzgN5s1yuCsGscMAz6aBPg1x7d6FXptD2QGDmwBJGrWZ3ycmH-pG-EaP2Hg
-export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
-export CLAUDE_CONFIG_DIR=~/.morphcode
-export API_TIMEOUT_MS=600000
-claude
