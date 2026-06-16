@@ -44,6 +44,10 @@
 
 = Introduction
 
+== Model Parameter
+
+#figure(image("images/model-parameters-english.png", width: 100%))
+
 == Overview
 
 #figure(image("images/Huawei-A3.png", width: 38%))
@@ -56,6 +60,8 @@ For Example:
 - One student = slow for a giant task
 - 384 AI workers + fast chatting = one super team
 - CloudMatrix384 is the machine version of this teamwork
+
+> Research Question: *How to scale the AI performance by cooperation Hardware and Software?*
 
 == Introduction
 
